@@ -1,5 +1,6 @@
 from fassembler import tasks
 from fassembler.project import Project, Setting
+from pkg_resources import resource_filename
 
 class ZineProject(Project):
     """
@@ -40,7 +41,8 @@ class ZineProject(Project):
         tasks.VirtualEnv(),
         tasks.InstallSpec('Install Zine',
                           '{{config.spec}}'),
-        tasks.InstallPasteConfig(path='fassembler/src/fassembler_projects/templates/zine/paste.ini_tmpl'),
+        tasks.InstallPasteConfig(path=resource_filename(
+                'fassembler_projects', 'templates/zine/paste.ini_tmpl')),
         tasks.InstallPasteStartup(),
         tasks.InstallSupervisorConfig(),
         ]

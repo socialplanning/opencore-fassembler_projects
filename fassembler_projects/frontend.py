@@ -1,5 +1,6 @@
 from fassembler import tasks
 from fassembler.project import Project, Setting
+from pkg_resources import resource_filename
 
 class FrontendProject(Project):
     """
@@ -59,7 +60,8 @@ class FrontendProject(Project):
     actions = [
         tasks.VirtualEnv(),
         tasks.InstallSpec('Install frontend', '{{config.spec}}'),
-        tasks.InstallPasteConfig(path='fassembler/src/fassembler_projects/templates/frontend/paste.ini_tmpl'),
+        tasks.InstallPasteConfig(path=resource_filename(
+                'fassembler_projects', 'templates/frontend/paste.ini_tmpl')),
         tasks.InstallPasteStartup(),
         tasks.InstallSupervisorConfig(),
         ]
