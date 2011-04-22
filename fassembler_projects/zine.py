@@ -34,6 +34,9 @@ class ZineProject(Project):
         Setting('internal_root_url',
                 default='http://localhost:{{env.base_port+1}}/openplans/',
                 help='Base url path to the opencore site root; if possible this should hit Zope directly using a non-internet-wide connection, because site admin credentials are passed in the HTTP request'),
+        Setting('use_pip',
+                default='True',
+                help="Use pip to install requirements, or easy_install"),
         ]
 
     actions = [
