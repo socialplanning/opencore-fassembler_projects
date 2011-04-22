@@ -45,9 +45,6 @@ class FrontendProject(Project):
         Setting('static_file_root',
                 default='None',
                 help="(Optional) Full path to a directory on the filesystem where static files will be served from. If set, a Paste#static fileserver will be mounted on the path prefix `/++static++/`"),
-        Setting('config_tmpl_location',
-                default='http://socialplanning-opencore.googlecode.com/svn/fassembler/templates/frontend',
-                help="SVN location of config template file(s)"),
         Setting('use_twirlip',
                 default='1',
                 help="Set to 0 if you don't have twirlip enabled"),
@@ -62,10 +59,7 @@ class FrontendProject(Project):
     actions = [
         tasks.VirtualEnv(),
         tasks.InstallSpec('Install frontend', '{{config.spec}}'),
-        tasks.SvnCheckout('Checkout paste configuration template',
-                          '{{config.config_tmpl_location}}',
-                          'frontend/src/paste_template'),
-        tasks.InstallPasteConfig(path='frontend/src/paste_template/paste.ini_tmpl'),
+        tasks.InstallPasteConfig(path='fassembler/src/fassembler_projects/templates/frontend/paste.ini_tmpl'),
         tasks.InstallPasteStartup(),
         tasks.InstallSupervisorConfig(),
         ]

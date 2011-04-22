@@ -1,0 +1,14 @@
+[DEFAULT]
+debug = True
+
+[app:main]
+use = egg:opencore_zinefarm
+zine_instances_directory = {{config.zine_instances_directory}}
+shared_secret_filename = {{config.shared_secret_filename}}
+admin_info_filename = {{config.admin_info_filename}}
+internal_root_url = {{config.internal_root_url}}
+
+[server:main]
+use = egg:Paste#http
+host = {{config.host}}
+port = {{config.port}}

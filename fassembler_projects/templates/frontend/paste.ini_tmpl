@@ -1,0 +1,98 @@
+[DEFAULT]
+debug = True
+
+[composite:main]
+use = egg:Paste#urlmap
+{{if config.static_file_root != 'None'}}
+/++static++/ = static
+{{endif}}
+{{if config.use_twirlip == '1'}}
+/notification = twirlip
+{{endif}}
+/ = frontend
+{{if config.use_twirlip == '1'}}
+filter-with = transcluder
+{{endif}}
+
+{{if config.static_file_root != 'None'}}
+[app:static]
+use = egg:Paste#static
+document_root = {{config.static_file_root}}
+{{endif}}
+
+[composite:frontend]
+use = egg:libopencore
+
+# these keys are hardcoded, but the values are just referencing sections in your .ini file
+opencore = opencore
+{{if config.use_tasktracker == '1'}}
+tasktracker = tasktracker
+{{endif}}
+{{if config.use_wordpress == '1'}}
+wordpress = wordpress
+{{elif config.use_zine == '1'}}
+zine = zine
+{{endif}}
+
+[app:opencore]
+use = egg:libopencore#proxy
+remote_uri = {{config.opencore_remote_uri}}
+
+# opencore's remote_uri can contain a suffix too; for example,
+# to force the avata browser skin,
+#  remote_uri = http://localhost:10001/++skin++avata/
+# just make sure to append the trailing slash
+
+# the opencore app needs to signal that it's opencore, so that the url is rewritten 
+# for the virtual host monster before proxying. otherwise links will be wrong.
+is_opencore = true
+# this url rewriting includes adding the /openplans/ part of the request.
+# if opencore ever manages to un-hardcode its assumptions about the portal id,
+# this can be made configurable.
+
+[filter:deliverance]
+use=egg:libopencore#deliverance
+
+# libopencore hardcodes the theme_uri and ruleset because changing them
+# is a bad idea. if you want to theme opencore with deliverance, use an
+# additional deliverance wrapper external to the whole thing.
+
+{{if config.use_tasktracker == '1'}}
+[app:tasktracker]
+use = egg:libopencore#proxy
+remote_uri = {{config.tasktracker_remote_uri}}
+filter-with = deliverance
+{{endif}}
+
+{{if config.use_wordpress == '1'}}
+[app:wordpress]
+use = egg:libopencore#proxy
+remote_uri = {{config.wordpress_remote_uri}}
+filter-with = deliverance
+{{elif config.use_zine == '1'}}
+[app:zine]
+use = egg:libopencore#proxy
+remote_uri = {{config.zine_remote_uri}}
+filter-with = deliverance
+{{endif}}
+
+{{if config.use_twirlip == '1'}}
+[app:twirlip]
+use = egg:libopencore#proxy
+remote_uri = {{config.twirlip_remote_uri}}
+topp_secret_filename = {{config.shared_secret_filename}}
+is_twirlip = true
+
+[filter:transcluder]
+paste.filter_factory = libopencore.transcluder_middleware:create_transcluder
+transcluder_ok_hosts = localhost
+{{endif}}
+
+[server:main]
+use = egg:Paste#http
+{{if config.only_local_connections == '1'}}
+host = 127.0.0.1
+{{else}}
+host = 0.0.0.0
+{{endif}}
+port = {{config.port}}
