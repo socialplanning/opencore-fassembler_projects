@@ -26,9 +26,6 @@ Changes
       install_requires=[
         "fassembler"
       ],
-      dependency_links=[
-        "https://svn.openplans.org/svn/fassembler/trunk#egg=fassembler-dev",
-        ],
       entry_points="""
       [fassembler.project]
       frontend = fassembler_projects.frontend:FrontendProject
