@@ -1,3 +1,14 @@
+0.5
+---
+
+Use pip for frontend project.
+
+0.4
+---
+
+Add "frontend" templates directly into source distribution, 
+rather than pulling them from a separate SVN repository.
+
 0.3
 ---
 
