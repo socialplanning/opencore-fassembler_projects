@@ -55,6 +55,8 @@ class FrontendProject(Project):
         Setting('twirlip_remote_uri',
                 default='http://localhost:{{env.base_port+7}}',
                 help="Base domain and port that Twirlip is listening on"),
+        Setting("use_pip",
+                default="True"),
         ]
 
     actions = [
