@@ -13,7 +13,7 @@ Changes
 =======
 
 %s
-""" % open("CHANGES.txt").read(),
+""" % open("docs/CHANGES.txt").read(),
       classifiers=[], 
       keywords='',
       author='Ethan Jucovy',
