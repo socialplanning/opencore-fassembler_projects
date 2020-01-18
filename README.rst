@@ -42,9 +42,17 @@ For install this package from development branch, execute the following command:
 User / Developer Resources
 ==========================
 
-* `The Opencore Project <http://www.coactivate.org/projects/opencore>`_
+* `The Opencore Project <https://www.coactivate.org/projects/opencore>`_.
 
-* `#opencore <irc://irc.freenode.net/opencore>`_
+* IRC **#opencore** chat at ``irc://irc.freenode.net/opencore``.
+
+
+Contribute
+==========
+
+- Issue Tracker: https://github.com/socialplanning/opencore-fassembler_projects/issues
+- Source Code: https://github.com/socialplanning/opencore-fassembler_projects
+- Documentation: https://www.coactivate.org/projects/fassembler
 
 
 License
