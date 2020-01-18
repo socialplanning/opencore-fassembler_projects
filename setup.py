@@ -8,12 +8,14 @@ setup(name='opencore-fassembler_projects',
       description="Assorted fassembler projects for creating repeatable OpenCore builds",
       long_description="""
 Contains fassembler projects for building components of an OpenCore stack.
+%s
 
 Changes
 =======
 
 %s
-""" % open("docs/CHANGES.txt").read(),
+""" % (open("README.rst").read(),
+       open("docs/CHANGES.txt").read())
       classifiers=[], 
       keywords='',
       author='Ethan Jucovy',
