@@ -1,6 +1,5 @@
 include README.rst
-include docs/*.txt
-include docs/*.GPL
+include docs/*.txt docs/*.rst docs/*.GPL
 include fassembler_projects/newbuild.sh
 include fassembler_projects/opencore.conf
 include *.py
