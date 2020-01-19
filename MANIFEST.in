@@ -1,0 +1,11 @@
+include README.rst
+include docs/*.txt
+include docs/*.GPL
+include fassembler_projects/newbuild.sh
+include fassembler_projects/opencore.conf
+include *.py
+include *_tmpl
+recursive-include fassembler_projects *
+global-exclude *.pyc *.pyo *~
+prune build
+prune dist
