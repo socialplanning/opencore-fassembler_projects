@@ -51,7 +51,7 @@ setup(name='opencore-fassembler_projects',
       ],
       ## FIXME: release all of these once fassembler stabilizes:
       dependency_links=[
-        'https://github.com/socialplanning/fassembler#egg=fassembler-0.7.1',
+          'https://github.com/socialplanning/fassembler/archive/master.zip#egg=fassembler',
       ],
       entry_points="""
       [fassembler.project]
