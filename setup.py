@@ -49,6 +49,10 @@ setup(name='opencore-fassembler_projects',
       install_requires=[
         "fassembler"
       ],
+      ## FIXME: release all of these once fassembler stabilizes:
+      dependency_links=[
+        'https://github.com/socialplanning/fassembler#egg=fassembler-0.7.1',
+      ],
       entry_points="""
       [fassembler.project]
       frontend = fassembler_projects.frontend:FrontendProject
