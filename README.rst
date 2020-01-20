@@ -35,6 +35,8 @@ For install this package from development branch, execute the following command:
 
 ::
 
+  $ pip-2.4 install -f https://dist.socialplanning.org/eggs/ \
+      -r https://raw.githubusercontent.com/socialplanning/fassembler/master/requirements.txt
   $ git clone https://github.com/socialplanning/opencore-fassembler_projects.git
   $ cd ./opencore-fassembler_projects
   $ python2.4 setup.py install
